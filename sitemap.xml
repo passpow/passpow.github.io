@@ -4,7 +4,47 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2023-10-06T00:00:00+00:00</lastmod>
+    <lastmod>2023-10-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/bash/</loc>
+    <lastmod>2023-10-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/crypto/</loc>
+    <lastmod>2023-10-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/hacking-web/</loc>
+    <lastmod>2023-10-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/natas-otw/</loc>
+    <lastmod>2023-10-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
+    <lastmod>2023-10-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/python/</loc>
+    <lastmod>2023-10-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/sql/</loc>
+    <lastmod>2023-10-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2023-10-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -29,21 +69,6 @@
   
   <url>
     <loc>/tags/pi/</loc>
-    <lastmod>2023-10-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/posts/</loc>
-    <lastmod>2023-10-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/python/</loc>
-    <lastmod>2023-10-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2023-10-06T00:00:00+00:00</lastmod>
   </url>
   

